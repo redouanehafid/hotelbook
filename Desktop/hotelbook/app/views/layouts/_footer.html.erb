@@ -1,0 +1,44 @@
+<div id="wrap" class="containerid">
+	    
+	<!-- FOOTER DARK -->
+	<footer id="footer-dark" class="bg-color1 dark-bg">
+		<div class="container"> 
+			<div class="row">
+				<div class="col-md-8">
+                      <div class="row">
+                          <div class="col-md-4">
+                              <h4>Clients</h4>
+                              <ul class="links-list">
+                              	<% @clients.each do |client| %>
+	                                  <li> <%= link_to truncate(client.titre, length: 34), client %> </li>
+                                 <% end %>
+                              </ul>
+                          </div>
+                          <div class="col-md-4">
+                              <h4>Fournisseurs</h4>
+                             <ul class="links-list">
+                              	<% @fournisseurs.each do |fournisseur| %>
+	                                  <li> <%= link_to truncate(fournisseur.titre, length: 34), fournisseur %> </li>
+                                 <% end %>
+                              </ul>
+                          </div>
+                          <div class="col-md-4">
+                              <h4>Autres</h4>
+                              <ul class="links-list">
+                              	<% @autres.each do |autre| %>
+	                                  <li> <%= link_to truncate(autre.titre, length: 34), autre %> </li>
+                                 <% end %>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-3 col-md-offset-1 ">
+                      <p class="editContent sep-half-bottom">&copy; 2016 Hotel Book<br>Developpé Par <a href="#" target="">Mohamed Marouan</a></p>
+                      <small class="desc-text"><i class="glyphicon glyphicon-send"></i>&nbsp;&nbsp;mailmarouan@gmail.com</small><br>
+                      <small class="desc-text"><i class="glyphicon glyphicon-phone"></i>&nbsp;&nbsp;06 61 05 06 63</small>   
+                  </div>
+			</div>
+		</div>
+	</footer>
+
+</div><!-- /#wrap -->

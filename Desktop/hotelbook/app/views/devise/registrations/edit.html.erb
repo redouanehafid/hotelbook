@@ -1,0 +1,91 @@
+<% provide(:titre , "profil") %>
+
+<div id="wrap">
+  <header id="intro-line" class="intro-block bg-color2 dark-bg fixed-bg half-padding bgimgindexpost1">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <h2 class="title"><strong><%= image_tag current_user.logo.url(:small), class: "img-thumbnail petitlogo1" %> &nbsp; Editer mon profil </strong></h2>
+        </div>
+      </div>
+    </div>
+  </header>
+</div><!-- /#wrap -->
+
+
+<div id="wrap">
+  <div id="linksprofil" class="container">
+    <ul class="menuprofil">
+      <li><%= link_to "Editer le profil", edit_user_registration_path, class:"currentprofil" %></li>
+      <li><%= link_to "Mes articles", articles_path %></li>
+    </ul>
+  </div>
+</div><!-- /#wrap -->
+
+
+
+<div id="wrap" class="containerid1">
+  <div class="container">
+
+    <!--  <h2>Edit <%= resource_name.to_s.humanize %></h2> -->
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= devise_error_messages! %>
+
+      
+      <div class="field col-md-6">
+        <%= f.label :nom %><br />
+        <%= f.text_field :nom, autofocus: true , class: "form-control"%>
+      </div>
+
+      <div class="field col-md-6">
+        <%= f.label :email %><br />
+        <%= f.email_field :email , class: "form-control"%>
+      </div>
+
+      <div class="field col-md-6">
+        <%= f.label "Mot de passe" %> <i>(Laisser en blanc si vous ne voulez pas changer)</i><br />
+        <%= f.password_field :password, autocomplete: "off" , class: "form-control"%>
+      </div>
+
+      <div class="field col-md-6">
+        <%= f.label "Confirmation du mot de passe" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off" , class: "form-control"%>
+      </div>
+
+      <div class="field col-md-6">
+        <%= f.label :ville %><br />
+        <%= f.text_field :ville , class: "form-control"%>
+      </div>
+
+      <div class="field col-md-6">
+        <%= f.label "Site web" %><br />
+        <%= f.text_field :siteweb , class: "form-control"%>
+      </div>
+
+      <div class="field col-md-6">
+        <%= f.label :facebook %><br />
+        <%= f.text_field :facebook , class: "form-control"%>
+      </div>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <div class="field col-md-6">
+        <%= f.label "Mot de passe actuel" %> <i>(Pour confirmer vos modifications)</i><br />
+        <%= f.password_field :current_password, autocomplete: "off" , class: "form-control"%>
+      </div>
+
+      <div class="field col-md-6">
+        <%= f.label :logo %><br />
+        <%= f.file_field :logo %>
+      </div>
+
+      <div class="actions col-md-6">
+        <br /> <%= f.submit "Mettre à jour", class:"btn btn-lg btn-primary btn-box" %>
+      </div>
+    <% end %>
+
+  </div>
+</div>

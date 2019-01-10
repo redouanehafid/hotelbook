@@ -1,0 +1,52 @@
+<% provide(:titre , "profil") %>
+
+<div id="wrap">
+  <header id="intro-line" class="intro-block bg-color2 dark-bg fixed-bg half-padding bgimgindexpost1">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <h2 class="title"><strong><%= image_tag current_user.logo.url(:small), class: "img-thumbnail petitlogo1" %> &nbsp; Liste de mes articles </strong></h2>
+        </div>
+      </div>
+    </div>
+  </header>
+</div><!-- /#wrap -->
+
+
+<div id="wrap">
+  <div id="linksprofil" class="container">
+    <ul class="menuprofil">
+      <li><%= link_to "Editer le profil", edit_user_registration_path %></li>
+      <li><%= link_to "Mes articles", articles_path, class:"currentprofil" %></li>
+    </ul>
+  </div>
+</div><!-- /#wrap -->
+
+
+<div id="wrap" class="containerid1">
+  <div class="container">
+    <%= paginate @posts %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Titre</th>
+          <th>Description</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @posts.each do |post| %>
+          <tr>
+            <td><%= link_to post.titre, post %></td>
+            <td><%= truncate(post.description, length: 70) %></td>
+            <td><div class="btn-group btn-group-sm" role="group">
+              <%= link_to 'Editer', edit_post_path(post) , class: 'btn btn-default'%>
+              <%= link_to 'Supprimer', post, method: :delete, data: { confirm: 'Are you sure?' } ,class: 'btn btn-default' %></td>
+            </div></tr>
+        <% end %>
+      </tbody>
+    </table>
+   
+  </div>
+</div>

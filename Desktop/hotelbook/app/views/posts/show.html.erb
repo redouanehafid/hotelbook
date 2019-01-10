@@ -1,0 +1,46 @@
+<div id="wrap">
+	<header id="intro-line" class="intro-block bg-color2 dark-bg fixed-bg half-padding bgimgindexpost1">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8">
+					<h2 class="title"><strong>Détail de l'article </strong></h2>
+				</div>
+			</div>
+		</div>
+	</header>
+</div><!-- /#wrap -->
+
+<div id="wrap">
+	<div class="container">
+		<div class="containerid">
+			<h2> <%= @post.titre %> <% provide(:categorie , @post.category.nom) %></h2>
+			<h4><%= @post.description %></h4>
+			<p> <%= image_tag @post.user.logo.url(:small), class: "img-thumbnail img-circle petitlogo"  %> <%= @post.user.nom %></p>
+
+			<div class="btn-group btn-group-sm" role="group">
+	            <% if @post.user == current_user %>
+	            <%= link_to 'Editer', edit_post_path(@post) , class: 'btn btn-default'%>
+	            <%= link_to 'Supprimer', @post, method: :delete, data: { confirm: 'Vous êtes sûr?' } ,class: 'btn btn-default' %></td>
+	         	<% end %>
+	    	</div>
+		</div>
+	</div>
+</div>
+
+<div id="wrap">
+	<div class="container containerid">
+		<%= render "comments/form" %>
+
+		<div class="container containerid">
+			<% @comments.each do |comment| %>
+			  <p> <%= image_tag comment.user.logo.url(:small), class: "img-thumbnail img-circle petitlogo"  %> <%= comment.user.nom %>
+			  	<% if comment.user == current_user %>&nbsp;&nbsp;
+				  	<%= link_to '<i class="glyphicon glyphicon-trash"></i>'.html_safe, post_comment_path(@post, comment), method: :delete, data: { confirm: 'Vous êtes sûr?' } ,class: 'btn btn-default' %>
+				  	<% end %>
+			  </p>
+			  <h4> <%= comment.commentaire %> </h4><hr />
+			<% end %>
+		</div>
+
+	</div>
+</div>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Podcasteur</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= render 'layouts/header'; %>
+
+<%= yield %>
+
+<% if yield(:footer) == "no" %>
+<% elsif yield(:footer) == "no" %>
+<% else %>
+	<%= render 'layouts/footer'; %>
+<% end %>
+
+</body>
+</html>

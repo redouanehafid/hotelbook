@@ -1,0 +1,43 @@
+<div id="wrap">
+	<!-- NAVIGATION LOGIN -->
+	<nav class="navbar bg-color1 dark-bg navbar-fixed-top">
+		<div class="container"> 
+			<% if user_signed_in? %>  
+				
+				<%= link_to root_path, class:"navbar-brand goto" do %>
+					<%= image_tag("logo1.png", height: "25", alt: "Your logo" ) %> 
+				<% end %>
+				<button class="round-toggle navbar-toggle menu-collapse-btn collapsed" data-target=".navMenuCollapse" data-toggle="collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+			
+				
+				<div class="collapse navbar-collapse navMenuCollapse">
+					<div class="login-panel">
+						<%= link_to "Poster" , new_post_path, class:"btn btn-success" %>
+						<%= link_to "Déconnexion" , destroy_user_session_path, method: :delete ,class:"btn btn-danger" %>
+					</div>
+					<ul class="nav">
+						<% Category.all.each do |category| %> 
+							<li class=<%= "active" if category.nom == params[:category] or category.nom == yield(:categorie)%>><%= link_to category.nom, posts_path(category: category.nom) %></li>
+						<% end %>
+						<li class=<%="active" if yield(:titre) == "profil" %>><%= link_to "Profil", edit_user_registration_path %></li>
+						<li class=<%="active" if yield(:titre) == "contact" %>><%= link_to "contact", contact_path %></li>
+					</ul>
+				</div>
+			<% else %>
+				
+				<%= link_to root_path, class:"navbar-brand goto" do %>
+					<%= image_tag("logo1.png", height: "25", alt: "Your logo" ) %> 
+				<% end %>
+				<button class="round-toggle navbar-toggle menu-collapse-btn collapsed" data-toggle="collapse" data-target=".navMenuCollapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+				
+
+				<div class="collapse navbar-collapse navMenuCollapse">
+					<ul class="nav">
+						<li class=<%="active" if yield(:titre) == "singin" %>><%= link_to "S'identifier", new_user_session_path %></li>
+						<li class=<%="active" if yield(:titre) == "contact" %>><%= link_to "contact", contact_path %></li>
+					</ul>
+				</div>
+			<% end %>
+		</div>
+	</nav>
+</div><!-- /#wrap -->
